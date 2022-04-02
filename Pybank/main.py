@@ -11,7 +11,7 @@ change_profit = []
 
 #Set path for cvs file
 #csvpath = os.path.join("..", "Resources", "budget_data.csv")
-csvpath = os.path.join("Pybank/Resources/budget_data.csv")
+csvpath = os.path.join("Resources/budget_data.csv")
 
 #Open and read csv file
 with open(csvpath) as csvfile:
@@ -37,41 +37,6 @@ month_decrease = change_profit.index(min(change_profit))+1
 
 
 
-    
-    #Net total amount of "Profit/Losses" over the entire period
-        # current_month_profit_loss = int(row[1])
-        # net_profit_loss += current_month_profit_loss
-        # print(net_profit_loss)
-        # arr= []
-        # if (count_months ==1):
-        #     previous_month_profit_loss = current_month_profit_loss
-
-        # else:
-        #     profit_loss_change = current_month_profit_loss - previous_month_profit_loss
-        #     previous_month_profit_loss = current_month_profit_loss
-        #     print(profit_loss_change)
-        #     arr.append(int(profit_loss_change))
-        # print(len(arr))
-        
-        
-
-    # #Sum average of the changes
-    # sum_profit_loss = sum(profit_loss_change)
-    # average_profit_loss = round(sum_profit_loss/(count_months - 1),2)
-    # print(average_profit_loss)
-
-    # #Highest and Lowest Changes in profit
-    # highest_change = max(profit_loss_change)
-    # lowest_change = min(profit_loss_change)
-
-    # #Value of highest and lowest changes in "profit/losses" over the entire period
-    # highest_month_index = profit_loss_change.index(highest_change)
-    # lowest_month_index = profit_loss_change.index(lowest_change)
-
-    # #Assigning Best and worst month
-    # best_month = months[highest_month_index]
-    # worst_month = months[lowest_month_index]
-
     # #Print anylysis
 
 print("Financial Analysis")
@@ -81,3 +46,20 @@ print(f"Total: ${sum(profit)}")
 print(f"Average Change: {round(sum(change_profit)/len(change_profit),2)}")
 print(f"Greatest Increase in profits: {month_count[month_increase]} (${(str(increase))})")
 print(f"Greatest Decrease in profits: {month_count[month_decrease]} (${(str(decrease))})")
+
+
+output = os.path.join("analysis", 'financialanalysis.txt')
+with open(output, "w") as new_analysis:
+    new_analysis.write("Financial Analysis")
+    new_analysis.write("\n")
+    new_analysis.write("-------------------")
+    new_analysis.write("\n")
+    new_analysis.write(f"Total Months: {len(month_count)}")
+    new_analysis.write("\n")
+    new_analysis.write(f"Total: ${sum(profit)}")
+    new_analysis.write("\n")
+    new_analysis.write(f"Average Change: {round(sum(change_profit)/len(change_profit),2)}")
+    new_analysis.write("\n")
+    new_analysis.write(f"Greatest Increase in profits: {month_count[month_increase]} (${(str(increase))})")
+    new_analysis.write("\n")
+    new_analysis.write(f"Greatest Decrease in profits: {month_count[month_decrease]} (${(str(decrease))})")
