@@ -82,7 +82,7 @@ print(f"Greatest Decrease in profits: {month_count[month_decrease]} (${(str(decr
 
 output = os.path.join("analysis", 'financialanalysis.txt')
 with open(output, "w") as new_analysis:
-    new_analysis.write(f"```")
+    new_analysis.write(f"```text")
     new_analysis.write("\n")
     new_analysis.write("Financial Analysis")
     new_analysis.write("\n")
