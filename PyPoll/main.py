@@ -37,28 +37,54 @@ with open(election_data_csv_path, newline="") as csvfile:
         else:
             final_list[candidate] = 1
     #Printint initial results
-    print(f"election results")
+    print(f"Election Results")
     print(f"-------------")
-    print(f"total votes: {vote_total}")
+    print(f"Total Votes: {vote_total}")
 
     for candidate in final_list:
 
         #determine the percentage of candidate vote
         percentage = (final_list[candidate]/vote_total)*100
         percentage_formatted = "{:.3f}".format(percentage)
-        print(candidate + ":" + str(percentage_formatted) + "%" + "(" + str(final_list[candidate])+")")
+        # print(percentage_formatted)
+        # print((candidate + str(percentage_formatted) + (str(final_list[candidate]))
+        # print((candidate + ": +str(percentage_formatted) +str "(final_list[candidate]"))
+        print(f"{candidate} : {str(percentage_formatted)} % ({str(final_list[candidate])})")
         #Calculate the number of votes
         if final_list[candidate] > winner_votes:
             winner_votes = final_list[candidate]
             winner_name = candidate
-        print(winner_name)
+    print(f"winner:{winner_name}") 
 
     output = os.path.join("analysis", 'Electionresults.txt')
     with open(output, "w") as new_analysis:
-        new_analysis.write("Election results")
+        new_analysis.write(f"```text")
         new_analysis.write("\n")
-        new_analysis.write("--------------------")
-        new_analysis.write ("Total votes")
+        new_analysis.write("Election Results")
+        new_analysis.write("\n")
+        new_analysis.write("-------------------- \n")
+        new_analysis.write(f"Total Votes: {vote_total} \n")
+        new_analysis.write("---------------------\n")
+
+        for candidate in final_list:
+
+            #determine the percentage of candidate vote
+            percentage = (final_list[candidate]/vote_total)*100
+            percentage_formatted = "{:.3f}".format(percentage)
+            # print(percentage_formatted)
+            # print((candidate + str(percentage_formatted) + (str(final_list[candidate]))
+            # print((candidate + ": +str(percentage_formatted) +str "(final_list[candidate]"))
+            new_analysis.write(f"{candidate} : {str(percentage_formatted)} % ({str(final_list[candidate])}) \n")
+        new_analysis.write("---------------------\n")
+            #Calculate the number of votes
+        if final_list[candidate] > winner_votes:
+            winner_votes = final_list[candidate]
+            winner_name = candidate 
+        new_analysis.write(f"Winner: {winner_name}") 
+        new_analysis.write("\n")
+        new_analysis.write("----------------------\n")
+        new_analysis.write(f"```")
+        new_analysis.write("\n")
         
         
     
