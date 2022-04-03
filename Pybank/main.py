@@ -5,9 +5,14 @@ import os
 import csv
 
 #Define Variables
+# months = []
+# profitlosschange =[]
 month_count = []
 profit = []
 change_profit = []
+# previous_month_profit_loss = 0
+# current_month_profit_loss = 0
+# profit_loss_change = 0
 
 #Set path for cvs file
 #csvpath = os.path.join("..", "Resources", "budget_data.csv")
@@ -35,6 +40,33 @@ decrease = min(change_profit)
 month_increase = change_profit.index(max(change_profit))+1
 month_decrease = change_profit.index(min(change_profit))+1
 
+# print(net_profit_loss)
+         # arr= []
+         # if (count_months ==1):
+         #     previous_month_profit_loss = current_month_profit_loss
+
+         # else:
+         #     profit_loss_change = current_month_profit_loss - previous_month_profit_loss
+         #     previous_month_profit_loss = current_month_profit_loss
+         #     print(profit_loss_change)
+         #     arr.append(int(profit_loss_change))
+         # print(len(arr))
+
+
+
+     # #Sum average of the changes
+     # sum_profit_loss = sum(profit_loss_change)
+     # average_profit_loss = round(sum_profit_loss/(count_months - 1),2)
+     # print(average_profit_loss)
+
+     # #Highest and Lowest Changes in profit
+     # highest_change = max(profit_loss_change)
+     # lowest_change = min(profit_loss_change)
+
+     # #Value of highest and lowest changes in "profit/losses" over the entire period
+     # highest_month_index = profit_loss_change.index(highest_change)
+     # lowest_month_index = profit_loss_change.index(lowest_change)
+
 
 
     # #Print anylysis
@@ -50,6 +82,8 @@ print(f"Greatest Decrease in profits: {month_count[month_decrease]} (${(str(decr
 
 output = os.path.join("analysis", 'financialanalysis.txt')
 with open(output, "w") as new_analysis:
+    new_analysis.write(f"```")
+    new_analysis.write("\n")
     new_analysis.write("Financial Analysis")
     new_analysis.write("\n")
     new_analysis.write("-------------------")
@@ -63,3 +97,5 @@ with open(output, "w") as new_analysis:
     new_analysis.write(f"Greatest Increase in profits: {month_count[month_increase]} (${(str(increase))})")
     new_analysis.write("\n")
     new_analysis.write(f"Greatest Decrease in profits: {month_count[month_decrease]} (${(str(decrease))})")
+    new_analysis.write("\n")
+    new_analysis.write(f"```")
